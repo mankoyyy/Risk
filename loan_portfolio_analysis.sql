@@ -1,14 +1,3 @@
--- ============================================================
--- LOAN PORTFOLIO CREDIT RISK ANALYSIS
--- SQL Project by Mayank Sharma
--- Dataset: Synthetic Indian Banking Loan Portfolio
--- Tables: borrowers, loans, repayments
--- ============================================================
-
--- ============================================================
--- SECTION 1: DATABASE SCHEMA & OVERVIEW
--- ============================================================
-
 -- Table 1: borrowers
 -- customer_id, name, age, annual_income, credit_score,
 -- employment_type, state, years_employed, existing_loans_count
@@ -21,11 +10,8 @@
 -- repayment_id, loan_id, customer_id, payment_date, amount_paid,
 -- emi_due, days_late, payment_month
 
--- ============================================================
--- SECTION 2: PORTFOLIO OVERVIEW
--- ============================================================
 
--- Q1: High-level portfolio summary
+-- Q1: portfolio summary
 SELECT
     COUNT(*)                                        AS total_loans,
     COUNT(DISTINCT l.customer_id)                   AS unique_borrowers,
@@ -71,10 +57,7 @@ ORDER BY
     END;
 
 
--- ============================================================
--- SECTION 3: NPA & DELINQUENCY ANALYSIS
--- ============================================================
-
+-- NPA & DELINQUENCY ANALYSIS
 -- Q4: NPA Rate by loan purpose (Gross NPA %)
 SELECT
     loan_purpose,
@@ -127,9 +110,7 @@ GROUP BY credit_band
 ORDER BY avg_score;
 
 
--- ============================================================
 -- SECTION 4: BORROWER RISK SEGMENTATION
--- ============================================================
 
 -- Q7: Risk segmentation using credit score + income (P1-P4 model)
 -- P1 = Prime, P2 = Near-Prime, P3 = Sub-Prime, P4 = Deep Sub-Prime
@@ -187,9 +168,8 @@ GROUP BY dti_band
 ORDER BY npa_rate_pct;
 
 
--- ============================================================
 -- SECTION 5: REPAYMENT BEHAVIOUR ANALYSIS
--- ============================================================
+
 
 -- Q9: Monthly repayment collection trend (2020-2023)
 SELECT
@@ -275,9 +255,8 @@ GROUP BY l.loan_purpose
 ORDER BY partial_pct DESC;
 
 
--- ============================================================
+
 -- SECTION 6: GEOGRAPHIC & DEMOGRAPHIC ANALYSIS
--- ============================================================
 
 -- Q13: State-wise portfolio concentration & NPA
 SELECT
@@ -316,9 +295,8 @@ GROUP BY age_group
 ORDER BY age_group;
 
 
--- ============================================================
+
 -- SECTION 7: PORTFOLIO CONCENTRATION RISK
--- ============================================================
 
 -- Q15: Top 20 borrowers by outstanding exposure (Concentration Risk)
 SELECT
@@ -362,10 +340,6 @@ FROM purpose_share
 ORDER BY hhi_contribution DESC;
 
 
--- ============================================================
--- SECTION 8: VINTAGE ANALYSIS
--- ============================================================
-
 -- Q17: Vintage analysis — NPA rates by disbursement year
 SELECT
     SUBSTR(l.disbursal_date, 1, 4)                      AS vintage_year,
@@ -408,10 +382,6 @@ WHERE fd.first_default_month IS NOT NULL
 GROUP BY default_timing
 ORDER BY default_timing;
 
-
--- ============================================================
--- SECTION 9: ADVANCED WINDOW FUNCTIONS
--- ============================================================
 
 -- Q19: Month-over-Month NPA trend using LAG
 WITH monthly_npa AS (
@@ -480,9 +450,8 @@ FROM (
 ORDER BY loan_purpose, payment_month_str;
 
 
--- ============================================================
+
 -- SECTION 10: PROVISION & EXPECTED LOSS ESTIMATION
--- ============================================================
 
 -- Q22: Simplified Expected Loss calculation
 -- EL = PD * LGD * EAD
