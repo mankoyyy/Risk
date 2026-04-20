@@ -157,10 +157,7 @@ sqlite3 credit_risk.db
 
 ## 👤 Author
 
-**Mayank Sharma**  
-MSc Financial Economics — Gokhale Institute of Politics & Economics (GIPE), Pune  
-CFA Level 1 Candidate | Credit Risk & Quantitative Finance  
-📧 manksharma0@gmail.com  
+**Mayank Sharma** 
 🔗 [GitHub](https://github.com/mankoyyy)
 
 ---
