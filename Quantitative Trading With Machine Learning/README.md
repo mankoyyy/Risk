@@ -28,8 +28,6 @@ A machine learning-based quantitative trading project that predicts **Volkswagen
 VW_ML_Trading/
 ├── vw_trading_project.py          # Main pipeline — data simulation, training, backtesting, figures
 ├── results_summary.csv            # Model comparison table (RMSE, R², Sharpe, etc.)
-├── VW_ML_Trading_Report.pdf       # Full project report with figures and analysis
-├── VW_ML_Study_Guide.pdf          # 45-page interview prep guide — theory + code walkthrough
 └── figures/
     ├── fig1_cumulative_returns.png    # Strategy vs buy-and-hold equity curves
     ├── fig2_model_metrics.png         # Bar chart — directional accuracy, R², MAE, Sharpe
