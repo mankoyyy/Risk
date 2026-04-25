@@ -187,11 +187,3 @@ python vw_trading_project.py
 
 ---
 
-## 👤 Author
-
-**Mayank Sharma**  
-
-
----
-
-> *"You do NOT need 90% accuracy to make money. You need to be right more than 50% of the time, consistently, after transaction costs."*
