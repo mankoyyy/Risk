@@ -155,11 +155,3 @@ sqlite3 credit_risk.db
 
 ---
 
-## 👤 Author
-
-**Mayank Sharma** 
-🔗 [GitHub](https://github.com/mankoyyy)
-
----
-
-> *This project is part of a portfolio demonstrating applied credit risk analytics skills using SQL, built to simulate real-world retail lending analysis.*
