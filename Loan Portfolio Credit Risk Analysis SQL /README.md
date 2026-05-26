@@ -106,30 +106,6 @@ Risk/
 
 ---
 
-## ⚙️ How to Run
-
-**Requirements:** SQLite3 (or any SQLite-compatible tool like DB Browser for SQLite)
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/mankoyyy/Risk.git
-cd Risk
-
-# 2. Launch SQLite and create the database
-sqlite3 credit_risk.db
-
-# 3. Import CSVs
-.mode csv
-.import borrowers.csv borrowers
-.import loans.csv loans
-.import repayments.csv repayments
-
-# 4. Run the analysis
-.read loan_portfolio_analysis.sql
-```
-
----
-
 ## 🛠️ SQL Concepts Used
 
 - **Aggregate functions** — `COUNT`, `SUM`, `AVG`, `ROUND`
@@ -137,7 +113,7 @@ sqlite3 credit_risk.db
 - **CTEs** — `WITH` clause for multi-step logic (consecutive late payments, early default detection, HHI)
 - **CASE WHEN** — custom segmentation (risk bands, DPD buckets, age groups, DTI bands)
 - **Subqueries & JOINs** — multi-table joins across borrowers, loans, and repayments
-- **NULLIF / GREATEST** — safe division and shortfall calculations
+- **NULLIF / GREATEST** — shortfall calculations
 
 ---
 
