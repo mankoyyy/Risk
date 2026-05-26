@@ -1,31 +1,4 @@
--- ============================================================
--- LOAN PORTFOLIO CREDIT RISK ANALYSIS
--- SQL Project by Mayank Sharma
--- Dataset: Synthetic Indian Banking Loan Portfolio
--- Tables: borrowers, loans, repayments
--- ============================================================
 
--- ============================================================
--- SECTION 1: DATABASE SCHEMA & OVERVIEW
--- ============================================================
-
--- Table 1: borrowers
--- customer_id, name, age, annual_income, credit_score,
--- employment_type, state, years_employed, existing_loans_count
-
--- Table 2: loans
--- loan_id, customer_id, loan_purpose, loan_amount, outstanding_balance,
--- interest_rate, tenure_months, emi_amount, disbursal_date, loan_status
-
--- Table 3: repayments
--- repayment_id, loan_id, customer_id, payment_date, amount_paid,
--- emi_due, days_late, payment_month
-
--- ============================================================
--- SECTION 2: PORTFOLIO OVERVIEW
--- ============================================================
-
--- Q1: High-level portfolio summary
 SELECT
     COUNT(*)                                        AS total_loans,
     COUNT(DISTINCT l.customer_id)                   AS unique_borrowers,
@@ -69,11 +42,6 @@ ORDER BY
         WHEN 'NPA' THEN 5
         WHEN 'Written-Off' THEN 6
     END;
-
-
--- ============================================================
--- SECTION 3: NPA & DELINQUENCY ANALYSIS
--- ============================================================
 
 -- Q4: NPA Rate by loan purpose (Gross NPA %)
 SELECT
@@ -275,9 +243,6 @@ GROUP BY l.loan_purpose
 ORDER BY partial_pct DESC;
 
 
--- ============================================================
--- SECTION 6: GEOGRAPHIC & DEMOGRAPHIC ANALYSIS
--- ============================================================
 
 -- Q13: State-wise portfolio concentration & NPA
 SELECT
@@ -316,9 +281,6 @@ GROUP BY age_group
 ORDER BY age_group;
 
 
--- ============================================================
--- SECTION 7: PORTFOLIO CONCENTRATION RISK
--- ============================================================
 
 -- Q15: Top 20 borrowers by outstanding exposure (Concentration Risk)
 SELECT
@@ -339,7 +301,7 @@ ORDER BY total_exposure_lacs DESC
 LIMIT 20;
 
 
--- Q16: Herfindahl-Hirschman Index (HHI) by loan purpose
+-- Q16: Herfindahl-Hirschman Index (HHI) by loan purpose as advised by shreyas bhai to use in this project 
 -- HHI measures concentration; higher = more concentrated
 WITH purpose_share AS (
     SELECT
@@ -362,9 +324,6 @@ FROM purpose_share
 ORDER BY hhi_contribution DESC;
 
 
--- ============================================================
--- SECTION 8: VINTAGE ANALYSIS
--- ============================================================
 
 -- Q17: Vintage analysis — NPA rates by disbursement year
 SELECT
@@ -408,10 +367,6 @@ WHERE fd.first_default_month IS NOT NULL
 GROUP BY default_timing
 ORDER BY default_timing;
 
-
--- ============================================================
--- SECTION 9: ADVANCED WINDOW FUNCTIONS
--- ============================================================
 
 -- Q19: Month-over-Month NPA trend using LAG
 WITH monthly_npa AS (
@@ -480,9 +435,6 @@ FROM (
 ORDER BY loan_purpose, payment_month_str;
 
 
--- ============================================================
--- SECTION 10: PROVISION & EXPECTED LOSS ESTIMATION
--- ============================================================
 
 -- Q22: Simplified Expected Loss calculation
 -- EL = PD * LGD * EAD
@@ -535,6 +487,3 @@ ORDER BY watch_flag, b.credit_score ASC
 LIMIT 30;
 
 
--- ============================================================
--- END OF PROJECT
--- ============================================================
