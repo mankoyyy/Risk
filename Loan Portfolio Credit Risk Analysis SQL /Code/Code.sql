@@ -49,12 +49,9 @@ SELECT
     COUNT(*)                                                AS total_loans,
     SUM(CASE WHEN loan_status IN ('NPA','Written-Off') THEN 1 ELSE 0 END) AS npa_count,
     ROUND(
-        SUM(CASE WHEN loan_status IN ('NPA','Written-Off') THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2
-    )                                                       AS gross_npa_pct,
+        SUM(CASE WHEN loan_status IN ('NPA','Written-Off') THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2 )   AS gross_npa_pct,
     ROUND(
-        SUM(CASE WHEN loan_status IN ('NPA','Written-Off') THEN outstanding_balance ELSE 0 END) /
-        NULLIF(SUM(outstanding_balance), 0) * 100, 2
-    )                                                       AS npa_by_value_pct
+        SUM(CASE WHEN loan_status IN ('NPA','Written-Off') THEN outstanding_balance ELSE 0 END) /  NULLIF(SUM(outstanding_balance), 0) * 100, 2  )     AS npa_by_value_pct
 FROM loans
 GROUP BY loan_purpose
 ORDER BY gross_npa_pct DESC;
