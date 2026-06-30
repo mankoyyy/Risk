@@ -15,7 +15,6 @@ OUT_DIR = '/home/claude/vw_ml_trading/figures'
 np.random.seed(42)
 
 # Tier-1/Tier-2 VW suppliers. Private ones (ZF, Mahle) don't have tickers
-# so using internal labels for now — swap for Bloomberg/Refinitiv pulls later.
 SUPPLY_CHAIN_TICKERS = [
     "BOSCH_DE", "CONTI_DE", "ZF_PRIV", "MAHLE_PRIV", "HELLA_DE",
     "LEONI_DE", "SCHAEFFLER_DE", "ELRING_DE", "STABILUS_DE", "NORMA_DE",
